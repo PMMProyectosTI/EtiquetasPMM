@@ -64,7 +64,7 @@ namespace Etiquetas_Almacen
         {
             OleDbCommand get = new OleDbCommand();
             get.Connection = conn;
-            get.CommandText = "SELECT F25 FROM [" + hoja + "$] WHERE F1='" + cp + "'";
+            get.CommandText = "SELECT F25,F26 FROM [" + hoja + "$] WHERE F1='" + cp + "'";
             try
             {
                 conn.Open();
@@ -72,30 +72,6 @@ namespace Etiquetas_Almacen
                 while (reader.Read())
                 {
                     this.TipoEtiqueta = int.Parse(reader["F25"].ToString());
-                }
-                reader.Dispose();
-                conn.Close();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                if (conn.State == System.Data.ConnectionState.Open)
-                    conn.Close();
-                MessageBox.Show(ex.Message);
-                return false;
-            }
-        }
-        public bool obtenerVariacionEtiqueta(string cp)
-        {
-            OleDbCommand get = new OleDbCommand();
-            get.Connection = conn;
-            get.CommandText = "SELECT F26 FROM [" + hoja + "$] WHERE F1='" + cp + "'";
-            try
-            {
-                conn.Open();
-                OleDbDataReader reader = get.ExecuteReader();
-                while (reader.Read())
-                {
                     this.VariacionEtiqueta = int.Parse(reader["F26"].ToString());
                 }
                 reader.Dispose();
@@ -110,5 +86,6 @@ namespace Etiquetas_Almacen
                 return false;
             }
         }
+        
     }
 }

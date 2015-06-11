@@ -71,27 +71,19 @@ namespace Etiquetas_Almacen
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             etq = new Etiqueta(textBox1.Text);
             if (obtenerTipo())
             {
-                if (obtenerVariacion())
-                {
-                    crearNuevaEtiqueta_tipoX(etq);
-                    label1.Text = etq.ClaveProducto;
-                    button2_Click(sender, e);
-                }
+                crearNuevaEtiqueta_tipoX(etq);
+                label1.Text = etq.ClaveProducto;
+                button2_Click(sender, e);
             }
+            this.Cursor = Cursors.Default;
         }
         private bool obtenerTipo()
         {
             if (etq.obtenerTipo(etq.ClaveProducto))
-                return true;
-            else
-                return false;
-        }
-        private bool obtenerVariacion()
-        {
-            if (etq.obtenerVariacionEtiqueta(etq.ClaveProducto))
                 return true;
             else
                 return false;
