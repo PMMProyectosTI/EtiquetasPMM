@@ -35,6 +35,7 @@ namespace Etiquetas_Almacen
         //good good
 
         //parece ser el último intento
+        //y contesto feliz al último intento
         public Etiqueta_Tipo_1(string cp) : base(cp)
         {
             this.ClaveProducto = cp;
