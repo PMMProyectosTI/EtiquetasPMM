@@ -114,7 +114,7 @@ namespace Etiquetas_Almacen
             y= rect_lateral_izquierdo.Y + 9;
 
             //El interlineado varía mucho de campo a campo porque se está intentando imitar por completo una etiqueta
-            //gfx.DrawString("ITEM No.:",letraGrande,Brush, new Point(x,y));
+
             y += 38;
             gfx.DrawString("MATERIAL:", letraCampos, Brush, new Point(x, y));
             y += 33;
@@ -125,9 +125,9 @@ namespace Etiquetas_Almacen
             gfx.DrawString("CUT LENGTH:", letraCampos, Brush, new Point(x, y));
             y += 36;
             gfx.DrawString("P. O. No.:", letraCampos, Brush, new Point(x, y));
-            y += 30;
-            gfx.DrawString("DISPATCH LOT:", letraCampos, Brush, new Point(x, y));
-            y += 27;
+            y += 30; x = 27;
+            gfx.DrawString("DISPATCH LOT:", letraGrande, Brush, new Point(x, y));
+            y += 27; x = rect_lateral_izquierdo.X + 9;
             gfx.DrawString("PRODUCTION LOT:", letraCampos, Brush, new Point(x, y));
             y += 27;
             gfx.DrawString("DATE:", letraCampos, Brush, new Point(x, y));
@@ -143,7 +143,7 @@ namespace Etiquetas_Almacen
 
             //Campos en el Recuadro Inferior
             x = (int)getCenterXcoordinate(rect_inferior.X + etq.Ancho, textSize.Width, rect_inferior.X) + 92;
-            gfx.DrawString("CARTON:", letraGrande, Brush, new Point(x, (etq.Largo - rect_inferior.Y)*(1/2)+564));
+            gfx.DrawString("CARTON:", letraCampos, Brush, new Point(x, (etq.Largo - rect_inferior.Y)*(1/2)+564));
 
             //Campos en el Recuadro Lateral Derecho Superior
             int acarreox = rect_lateral_derecho_sup.Width / 2;
