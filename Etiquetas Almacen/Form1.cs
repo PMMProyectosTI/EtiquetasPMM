@@ -100,7 +100,6 @@ namespace Etiquetas_Almacen
                             etq_1_2 = new Etiqueta_Tipo_1_2(etq.ClaveProducto);
                             break;
                     }
-                    
                     break;
                 case 2:
                     break;

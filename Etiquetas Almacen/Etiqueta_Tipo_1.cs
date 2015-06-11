@@ -26,10 +26,7 @@ namespace Etiquetas_Almacen
         protected int yi = 35;//int yi = 35;
         protected int widthi = 120;//int widthi = 125;
         protected int heighti = 34;//int heighti = 40;
-        //fin_imagen
 
-        //Image imageFile = 
-            //"C:/Users/Juan/Desktop/Logos.png");
         public Etiqueta_Tipo_1(string cp) : base(cp)
         {
             this.ClaveProducto = cp;
@@ -37,9 +34,6 @@ namespace Etiquetas_Almacen
             this.Ancho = 786; 
             conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0; Data" + @" Source=" + path.LocalPath + "; Extended Properties='Excel 12.0 Macro;HDR=NO;'";
         }
-
-        public Boolean Logo
-        { get; set; }
 
         public bool obtenerDatos(string cp)
         {
@@ -183,11 +177,7 @@ namespace Etiquetas_Almacen
             x = (0.5 * (etiquetaX + rectX)) - (0.5 * textoX);
             return x;
         }
-        /*private double CentroDeY(int large, int ejey)
-        {
-        }*/
 
-        //INSERTAR AQUI CODIGO PARA INSERTAR CODIGO DE BARRA
         
 
     }

@@ -18,7 +18,7 @@ namespace Etiquetas_Almacen
             this.Ancho = 786; 
             conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0; Data" + @" Source=" + path.LocalPath + "; Extended Properties='Excel 12.0 Macro;HDR=NO;'";
         }
-        public PrintPageEventArgs dibujarEtiqueta(PrintPageEventArgs e, Etiqueta_Tipo_1 etq)
+        public PrintPageEventArgs dibujarEtiqueta(PrintPageEventArgs e, Etiqueta_Tipo_1_2 etq)
         {
             int x = 25, y = 20;
 
