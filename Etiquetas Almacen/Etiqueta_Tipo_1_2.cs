@@ -3,74 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.OleDb;
 using System.Drawing.Printing;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Data.OleDb;
-using System.Windows.Forms;
-
 namespace Etiquetas_Almacen
 {
-    class Etiqueta_Tipo_1 : Etiqueta
+    class Etiqueta_Tipo_1_2 : Etiqueta_Tipo_1
     {
-        //cambios 1 desde JuanPC
-        //respuesta a cambio 1 desde MathusPC
-        protected  Uri path = new Uri("file://C:/hv/EspPrueba.xls");
-        protected string hoja = "Hoja de Especificaciones grales";
-        protected OleDbConnection conn = new OleDbConnection();
-
-        //protected   Image newImage = Image.FromFile("C:/Users/Juan/Desktop/Logos/PNG.png");
-        //Image newImage = Image.FromFile("Logos.png");
-
-        protected  int xi = 40;//int xi = 35;
-        protected int yi = 35;//int yi = 35;
-        protected int widthi = 120;//int widthi = 125;
-        protected int heighti = 34;//int heighti = 40;
-        //fin_imagen
-
-        //Image imageFile = 
-            //"C:/Users/Juan/Desktop/Logos.png");
-        public Etiqueta_Tipo_1(string cp) : base(cp)
+        public Etiqueta_Tipo_1_2(string cp) : base(cp)
         {
             this.ClaveProducto = cp;
             this.Largo = 571;
             this.Ancho = 786; 
             conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0; Data" + @" Source=" + path.LocalPath + "; Extended Properties='Excel 12.0 Macro;HDR=NO;'";
         }
-
-        public Boolean Logo
-        { get; set; }
-
-        public bool obtenerDatos(string cp)
-        {
-            OleDbCommand get = new OleDbCommand();
-            get.Connection = conn;
-            get.CommandText = "SELECT F2,F3,F4,F5,F6 FROM ["+hoja+"$] WHERE F1='"+cp+"'";
-            try
-            {
-                conn.Open();
-                OleDbDataReader reader = get.ExecuteReader();
-                while (reader.Read())
-                {
-                    this.Cliente = reader["F2"].ToString();
-                    this.Material = reader["F3"].ToString();
-                    this.Calibre = reader["F4"].ToString();
-                    this.Color = reader["F5"].ToString();
-                    this.Corte = reader["F6"].ToString();
-                }
-                reader.Dispose();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                if (conn.State == System.Data.ConnectionState.Open)
-                    conn.Close();
-                MessageBox.Show(ex.Message);
-                return false;
-            }
-            
-        }
-
         public PrintPageEventArgs dibujarEtiqueta(PrintPageEventArgs e, Etiqueta_Tipo_1 etq)
         {
             int x = 25, y = 20;
@@ -78,12 +25,12 @@ namespace Etiquetas_Almacen
             //Fuente de letra
             Font letraCliente = new Font("Arial", 22);
             Font letraGrande = new Font("Arial", 16, FontStyle.Bold);
-            Font letraCampos = new Font("Arial", 12, FontStyle.Bold);      
+            Font letraCampos = new Font("Arial", 12, FontStyle.Bold);
 
             Graphics gfx = e.Graphics;
             SolidBrush Brush = new SolidBrush(System.Drawing.Color.Black);
             Pen pluma = new Pen(System.Drawing.Color.Black, 3);
-            
+
             //Rectángulos 
             Rectangle rectangulo_contorno = new Rectangle(x, y, etq.Ancho, etq.Largo);
             Rectangle rect_superior = new Rectangle(x, y, etq.Ancho, 70);
@@ -113,14 +60,14 @@ namespace Etiquetas_Almacen
             Size textSize = TextRenderer.MeasureText(etq.Cliente, letraCliente);
             x = (int)getCenterXcoordinate(rect_superior.X + etq.Ancho, textSize.Width, rect_superior.X);
             gfx.DrawString(etq.Cliente, letraCliente, Brush, new Point(x, rect_superior.Y + 18));
-            
+
 
             //Campos en Recuadro lateral izquierdo
-            x= rect_lateral_izquierdo.X + 9;
-            y= rect_lateral_izquierdo.Y + 9;
+            x = rect_lateral_izquierdo.X + 9;
+            y = rect_lateral_izquierdo.Y + 9;
 
             //El interlineado varía mucho de campo a campo porque se está intentando imitar por completo una etiqueta
-            gfx.DrawString("ITEM No.:",letraGrande,Brush, new Point(x,y));
+            gfx.DrawString("ITEM No.:", letraGrande, Brush, new Point(x, y));
             y += 45;
             gfx.DrawString("MATERIAL:", letraCampos, Brush, new Point(x, y));
             y += 39;
@@ -147,13 +94,13 @@ namespace Etiquetas_Almacen
 
             //Campos en el Recuadro Inferior
             x = (int)getCenterXcoordinate(rect_inferior.X + etq.Ancho, textSize.Width, rect_inferior.X) + 92;
-            gfx.DrawString("CARTON:", letraGrande, Brush, new Point(x, (etq.Largo - rect_inferior.Y)*(1/2)+564));
+            gfx.DrawString("CARTON:", letraGrande, Brush, new Point(x, (etq.Largo - rect_inferior.Y) * (1 / 2) + 564));
 
             //Campos en el Recuadro Lateral Derecho Superior
             int acarreox = rect_lateral_derecho_sup.Width / 2;
             x = rect_lateral_derecho_sup.X + acarreox - 70;
-            y = rect_lateral_derecho_sup.Y + 13; 
-            gfx.DrawString("GROSS WEIGHT:", letraCampos, Brush, new Point(x,y));
+            y = rect_lateral_derecho_sup.Y + 13;
+            gfx.DrawString("GROSS WEIGHT:", letraCampos, Brush, new Point(x, y));
 
             //Campos en el Recuadro Lateral Derecho Inferior
             x = rect_lateral_derecho_inf.X + acarreox - 57;
@@ -171,24 +118,10 @@ namespace Etiquetas_Almacen
            // gfx.DrawImage(newImage, xi, yi, widthi, heighti);
             //gfx.DrawImage(Image imageFile, Rectangle rect_Superior, 25, 25, 100, 100);
             //e.Graphics.DrawImage(imageFile, new Point(22,27));
-           
+
 
 
             return e;
         }
-
-        protected double getCenterXcoordinate(int etiquetaX, int textoX, int rectX)//anchura en pixeles del texto y de la etiqueta
-        {
-            double x = 0;
-            x = (0.5 * (etiquetaX + rectX)) - (0.5 * textoX);
-            return x;
-        }
-        /*private double CentroDeY(int large, int ejey)
-        {
-        }*/
-
-        //INSERTAR AQUI CODIGO PARA INSERTAR CODIGO DE BARRA
-        
-
     }
 }

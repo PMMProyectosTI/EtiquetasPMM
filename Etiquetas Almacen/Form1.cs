@@ -17,8 +17,10 @@ namespace Etiquetas_Almacen
         //Declaración de variables globales
         #region variablesGlobales
             int tipo_etiqueta_en_uso=0;
+            int variacion_en_uso = 0;
             Etiqueta etq;
             Etiqueta_Tipo_1 etq_1;
+            Etiqueta_Tipo_1_2 etq_1_2; //etiqueta tipo 1 - variacion 2
             PrintDocument printDoc = new PrintDocument();
             PrintPreviewDialog previewdlg = new PrintPreviewDialog();
         #endregion
@@ -32,10 +34,18 @@ namespace Etiquetas_Almacen
 
         void printDoc_PrintPage(object sender, PrintPageEventArgs e)
         {
-            switch (tipo_etiqueta_en_uso)
-            { 
-                case 1:     
-                    e = etq_1.dibujarEtiqueta(e, etq_1);
+            switch (etq.TipoEtiqueta)
+            {
+                case 1:
+                    switch (etq.VariacionEtiqueta)
+                    { 
+                        case 1:
+                            e = etq_1.dibujarEtiqueta(e, etq_1);
+                            break;
+                        case 2:
+                            e = etq_1_2.dibujarEtiqueta(e, etq_1_2);
+                            break;
+                    } 
                     break;
             }
         }
@@ -50,9 +60,12 @@ namespace Etiquetas_Almacen
             etq = new Etiqueta(textBox1.Text);
             if (obtenerTipo())
             {
-                crearNuevaEtiqueta_tipoX(etq);
-                label1.Text = etq_1.ClaveProducto;
-                button2_Click(sender, e);
+                if (obtenerVariacion())
+                {
+                    crearNuevaEtiqueta_tipoX(etq);
+                    label1.Text = etq.ClaveProducto;
+                    button2_Click(sender, e);
+                }
             }
         }
         private bool obtenerTipo()
@@ -62,14 +75,32 @@ namespace Etiquetas_Almacen
             else
                 return false;
         }
-
+        private bool obtenerVariacion()
+        {
+            if (etq.obtenerVariacionEtiqueta(etq.ClaveProducto))
+                return true;
+            else
+                return false;
+        }
         private void crearNuevaEtiqueta_tipoX(Etiqueta etq)
         {
             switch (etq.TipoEtiqueta)
             { 
                 case 1:
-                    tipo_etiqueta_en_uso = 1;
-                    etq_1 = new Etiqueta_Tipo_1(etq.ClaveProducto);
+                    switch (etq.VariacionEtiqueta)
+                    { 
+                        case 1:
+                            tipo_etiqueta_en_uso = 1;
+                            variacion_en_uso = 1;
+                            etq_1 = new Etiqueta_Tipo_1(etq.ClaveProducto);
+                            break;
+                        case 2:
+                            tipo_etiqueta_en_uso = 1;
+                            variacion_en_uso = 2;
+                            etq_1_2 = new Etiqueta_Tipo_1_2(etq.ClaveProducto);
+                            break;
+                    }
+                    
                     break;
                 case 2:
                     break;
@@ -123,7 +154,7 @@ namespace Etiquetas_Almacen
             previewdlg.Size = new System.Drawing.Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
             previewdlg.PrintPreviewControl.Zoom = 2;
             //TAMAÑO
-            switch (tipo_etiqueta_en_uso)
+            switch (etq.TipoEtiqueta)
             { 
                 case 1:
                     printDoc.PrinterSettings.DefaultPageSettings.PaperSize.RawKind = 1;
