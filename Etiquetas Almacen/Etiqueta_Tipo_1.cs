@@ -30,6 +30,8 @@ namespace Etiquetas_Almacen
             //"C:/Users/Juan/Desktop/Logos.png");
 
 
+        //es aquí donde juan intentó hacer lo del logo
+
         public Etiqueta_Tipo_1(string cp) : base(cp)
         {
             this.ClaveProducto = cp;

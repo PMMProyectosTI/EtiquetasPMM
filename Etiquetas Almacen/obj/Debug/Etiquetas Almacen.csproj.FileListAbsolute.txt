@@ -16,3 +16,6 @@ C:\Users\Juan\Desktop\Etiquetas Almacen\Etiquetas Almacen\obj\Debug\Etiquetas Al
 C:\Users\Juan\Desktop\Etiquetas Almacen\Etiquetas Almacen\obj\Debug\Etiquetas_Almacen.Form1.resources
 C:\Users\Juan\Desktop\Etiquetas Almacen\Etiquetas Almacen\obj\Debug\Etiquetas_Almacen.Properties.Resources.resources
 C:\Users\Juan\Desktop\Etiquetas Almacen\Etiquetas Almacen\obj\Debug\Etiquetas Almacen.csproj.GenerateResource.Cache
+C:\GitHub\EtiquetasPMM\Etiquetas Almacen\bin\Debug\Etiquetas Almacen.exe.config
+C:\GitHub\EtiquetasPMM\Etiquetas Almacen\obj\Debug\Etiquetas Almacen.exe
+C:\GitHub\EtiquetasPMM\Etiquetas Almacen\obj\Debug\Etiquetas Almacen.pdb
