@@ -13,6 +13,7 @@ namespace Etiquetas_Almacen
 {
     class Etiqueta_Tipo_1 : Etiqueta
     {
+        //cambios 1 desde JuanPC
         Uri path = new Uri("file://C:/hv/EspPrueba.xls");
         string hoja = "Hoja de Especificaciones grales";
         OleDbConnection conn = new OleDbConnection();
