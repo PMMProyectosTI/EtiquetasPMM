@@ -32,6 +32,7 @@ namespace Etiquetas_Almacen
 
         //es aquí donde juan intentó hacer lo del logo
         //hola
+        //good good
         public Etiqueta_Tipo_1(string cp) : base(cp)
         {
             this.ClaveProducto = cp;
