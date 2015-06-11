@@ -21,6 +21,9 @@ namespace Etiquetas_Almacen
             Etiqueta etq;
             Etiqueta_Tipo_1 etq_1;
             Etiqueta_Tipo_1_2 etq_1_2; //etiqueta tipo 1 - variacion 2
+            Etiqueta_Tipo_1_3 etq_1_3; //etiqueta tipo 1 - variacion 3
+
+            Etiqueta_Tipo_2 etq_2;
             PrintDocument printDoc = new PrintDocument();
             PrintPreviewDialog previewdlg = new PrintPreviewDialog();
         #endregion
@@ -45,7 +48,18 @@ namespace Etiquetas_Almacen
                         case 2:
                             e = etq_1_2.dibujarEtiqueta(e, etq_1_2);
                             break;
+                        case 3:
+                            e = etq_1_3.dibujarEtiqueta(e, etq_1_3);
+                            break;
                     } 
+                    break;
+                case 2:
+                    switch (etq.VariacionEtiqueta)
+                    {
+                        case 1:
+                            e = etq_2.dibujarEtiqueta(e, etq_2);
+                            break;
+                    }
                     break;
             }
         }
@@ -99,9 +113,22 @@ namespace Etiquetas_Almacen
                             variacion_en_uso = 2;
                             etq_1_2 = new Etiqueta_Tipo_1_2(etq.ClaveProducto);
                             break;
+                        case 3:
+                            tipo_etiqueta_en_uso = 1;
+                            variacion_en_uso = 3;
+                            etq_1_3 = new Etiqueta_Tipo_1_3(etq.ClaveProducto);
+                            break;
                     }
                     break;
                 case 2:
+                    switch (etq.VariacionEtiqueta)
+                    {
+                        case 1:
+                            tipo_etiqueta_en_uso = 2;
+                            variacion_en_uso = 1;
+                            etq_2 = new Etiqueta_Tipo_2(etq.ClaveProducto);
+                            break;
+                    }
                     break;
                 case 3:
                     break;
@@ -159,6 +186,7 @@ namespace Etiquetas_Almacen
                     printDoc.PrinterSettings.DefaultPageSettings.PaperSize.RawKind = 1;
                     break;
                 case 2:
+                    printDoc.PrinterSettings.DefaultPageSettings.PaperSize.RawKind = 1;
                     break;
                 case 3:
                     break;

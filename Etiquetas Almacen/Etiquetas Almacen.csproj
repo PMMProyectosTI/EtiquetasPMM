@@ -47,6 +47,8 @@
     <Compile Include="Etiqueta.cs" />
     <Compile Include="Etiqueta_Tipo_1.cs" />
     <Compile Include="Etiqueta_Tipo_1_2.cs" />
+    <Compile Include="Etiqueta_Tipo_1_3.cs" />
+    <Compile Include="Etiqueta_Tipo_2.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

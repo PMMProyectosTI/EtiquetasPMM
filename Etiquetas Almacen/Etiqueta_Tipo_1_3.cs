@@ -7,18 +7,20 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Drawing.Printing;
 using System.Drawing;
+
 namespace Etiquetas_Almacen
 {
-    class Etiqueta_Tipo_1_2 : Etiqueta_Tipo_1
+    class Etiqueta_Tipo_1_3 : Etiqueta_Tipo_1
     {
-        public Etiqueta_Tipo_1_2(string cp) : base(cp)
+        
+        public Etiqueta_Tipo_1_3(string cp) : base(cp)
         {
             this.ClaveProducto = cp;
             this.Largo = 571;
             this.Ancho = 786; 
             conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0; Data" + @" Source=" + path.LocalPath + "; Extended Properties='Excel 12.0 Macro;HDR=NO;'";
         }
-        public PrintPageEventArgs dibujarEtiqueta(PrintPageEventArgs e, Etiqueta_Tipo_1_2 etq)
+        public PrintPageEventArgs dibujarEtiqueta(PrintPageEventArgs e, Etiqueta_Tipo_1_3 etq)
         {
             int x = 25, y = 20;
 
