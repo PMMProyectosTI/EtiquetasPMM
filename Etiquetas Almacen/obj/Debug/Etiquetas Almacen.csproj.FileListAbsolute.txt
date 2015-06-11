@@ -1,0 +1,18 @@
+C:\Users\Gerardo\Documents\Respaldos\Etiquetas de Almacen\Etiquetas Almacen\Etiquetas Almacen\bin\Debug\Etiquetas Almacen.exe.config
+C:\Users\Gerardo\Documents\Respaldos\Etiquetas de Almacen\Etiquetas Almacen\Etiquetas Almacen\bin\Debug\Etiquetas Almacen.exe
+C:\Users\Gerardo\Documents\Respaldos\Etiquetas de Almacen\Etiquetas Almacen\Etiquetas Almacen\bin\Debug\Etiquetas Almacen.pdb
+C:\Users\Gerardo\Documents\Respaldos\Etiquetas de Almacen\Etiquetas Almacen\Etiquetas Almacen\obj\Debug\Etiquetas Almacen.csprojResolveAssemblyReference.cache
+C:\Users\Gerardo\Documents\Respaldos\Etiquetas de Almacen\Etiquetas Almacen\Etiquetas Almacen\obj\Debug\Etiquetas_Almacen.Form1.resources
+C:\Users\Gerardo\Documents\Respaldos\Etiquetas de Almacen\Etiquetas Almacen\Etiquetas Almacen\obj\Debug\Etiquetas_Almacen.Properties.Resources.resources
+C:\Users\Gerardo\Documents\Respaldos\Etiquetas de Almacen\Etiquetas Almacen\Etiquetas Almacen\obj\Debug\Etiquetas Almacen.csproj.GenerateResource.Cache
+C:\Users\Gerardo\Documents\Respaldos\Etiquetas de Almacen\Etiquetas Almacen\Etiquetas Almacen\obj\Debug\Etiquetas Almacen.exe
+C:\Users\Gerardo\Documents\Respaldos\Etiquetas de Almacen\Etiquetas Almacen\Etiquetas Almacen\obj\Debug\Etiquetas Almacen.pdb
+C:\Users\Juan\Desktop\Etiquetas Almacen\Etiquetas Almacen\bin\Debug\Etiquetas Almacen.exe.config
+C:\Users\Juan\Desktop\Etiquetas Almacen\Etiquetas Almacen\obj\Debug\Etiquetas Almacen.exe
+C:\Users\Juan\Desktop\Etiquetas Almacen\Etiquetas Almacen\obj\Debug\Etiquetas Almacen.pdb
+C:\Users\Juan\Desktop\Etiquetas Almacen\Etiquetas Almacen\bin\Debug\Etiquetas Almacen.exe
+C:\Users\Juan\Desktop\Etiquetas Almacen\Etiquetas Almacen\bin\Debug\Etiquetas Almacen.pdb
+C:\Users\Juan\Desktop\Etiquetas Almacen\Etiquetas Almacen\obj\Debug\Etiquetas Almacen.csprojResolveAssemblyReference.cache
+C:\Users\Juan\Desktop\Etiquetas Almacen\Etiquetas Almacen\obj\Debug\Etiquetas_Almacen.Form1.resources
+C:\Users\Juan\Desktop\Etiquetas Almacen\Etiquetas Almacen\obj\Debug\Etiquetas_Almacen.Properties.Resources.resources
+C:\Users\Juan\Desktop\Etiquetas Almacen\Etiquetas Almacen\obj\Debug\Etiquetas Almacen.csproj.GenerateResource.Cache
