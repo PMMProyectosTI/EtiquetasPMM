@@ -30,8 +30,8 @@ namespace Etiquetas_Almacen
         public Etiqueta_Tipo_5_1(string cp) : base(cp)
         {
             this.ClaveProducto = cp;
-            this.Largo = 571;
-            this.Ancho = 774; 
+            this.Largo = 385;
+            this.Ancho = 389; 
             conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0; Data" + @" Source=" + path.LocalPath + "; Extended Properties='Excel 12.0 Macro;HDR=NO;'";
         }
 
@@ -77,17 +77,17 @@ namespace Etiquetas_Almacen
 
             Graphics gfx = e.Graphics;
             SolidBrush Brush = new SolidBrush(System.Drawing.Color.Black);
-            Pen pluma = new Pen(System.Drawing.Color.Black, 3);
+            Pen pluma = new Pen(System.Drawing.Color.Black, 4);
             
             //Rectángulos 
             Rectangle rectangulo_contorno = new Rectangle(x, y, etq.Ancho, etq.Largo);
-            Rectangle rect_superior = new Rectangle(x, y, etq.Ancho, 70);
-            Rectangle rect_superior_2 = new Rectangle(x, rect_superior.Y + 70, etq.Ancho, 84);//c
-            Rectangle rect_lateral_izquierdo = new Rectangle(x, rect_superior_2.Y + 84, 174, 387);
-            Rectangle rect_central = new Rectangle(rect_lateral_izquierdo.X + 174, rect_superior_2.Y + 84, 366, 387);
-            Rectangle rect_lateral_derecho_sup = new Rectangle(rect_central.X + 366, rect_superior_2.Y + 84, 234, 211);
-            Rectangle rect_lateral_derecho_inf = new Rectangle(rect_central.X + 366, rect_lateral_derecho_sup.Y + 211, 234, 176);
-            Rectangle rect_inferior = new Rectangle(x, rect_lateral_izquierdo.Y + 387, etq.Ancho, 30);
+            Rectangle rect_superior = new Rectangle(x, y, etq.Ancho, 68);
+            Rectangle rect_superior_2 = new Rectangle(x, rect_superior.Y + 70, etq.Ancho, 64);//c
+            Rectangle rect_lateral_izquierdo = new Rectangle(x, rect_superior_2.Y + 68, 94, 223);
+            Rectangle rect_central = new Rectangle(rect_lateral_izquierdo.X + 94, rect_superior_2.Y + 64, 151, 223);
+            Rectangle rect_lateral_derecho_sup = new Rectangle(rect_central.X + 151, rect_superior_2.Y + 64, 151, 106);
+            Rectangle rect_lateral_derecho_inf = new Rectangle(rect_central.X + 151, rect_lateral_derecho_sup.Y + 106, 151, 121);
+            Rectangle rect_inferior = new Rectangle(x, rect_lateral_izquierdo.Y + 223, etq.Ancho, 38);
 
             gfx.DrawRectangle(pluma, rectangulo_contorno);
             gfx.DrawRectangle(pluma, rect_superior);
