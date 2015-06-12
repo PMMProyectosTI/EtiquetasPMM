@@ -24,7 +24,7 @@ namespace Etiquetas_Almacen
         public Etiqueta_Tipo_3_1(string cp) : base(cp)
         {
             this.ClaveProducto = cp;
-            this.Largo = 311;
+            this.Largo = 308;
             this.Ancho = 751;
             conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0; Data" + @" Source=" + path.LocalPath + "; Extended Properties='Excel 12.0 Macro;HDR=NO;'";
         }
@@ -59,7 +59,7 @@ namespace Etiquetas_Almacen
 
         }
 
-        public PrintPageEventArgs dibujarEtiqueta(PrintPageEventArgs e, Etiqueta_Tipo_1 etq)
+        public PrintPageEventArgs dibujarEtiqueta(PrintPageEventArgs e, Etiqueta_Tipo_3_1 etq)
         {
             int x = 25, y = 20;
 
@@ -74,24 +74,22 @@ namespace Etiquetas_Almacen
 
             //Rectángulos 
             Rectangle rectangulo_contorno = new Rectangle(x, y, etq.Ancho, etq.Largo);
-           /* Rectangle rect_superior = new Rectangle(x, y, etq.Ancho, 70);
-            Rectangle rect_superior_2 = new Rectangle(x, rect_superior.Y + 70, etq.Ancho, 92);//c
-            Rectangle rect_lateral_izquierdo = new Rectangle(x, rect_superior_2.Y + 92, 175, 379);
-            Rectangle rect_central = new Rectangle(rect_lateral_izquierdo.X + 175, rect_superior_2.Y + 92, 373, 379);
-            Rectangle rect_lateral_derecho_sup = new Rectangle(rect_central.X + 373, rect_superior_2.Y + 92, 238, 211);
-            Rectangle rect_lateral_derecho_inf = new Rectangle(rect_central.X + 373, rect_lateral_derecho_sup.Y + 211, 238, 168);
-            Rectangle rect_inferior = new Rectangle(x, rect_lateral_izquierdo.Y + 379, etq.Ancho, 30);*/
+            Rectangle rect_superior = new Rectangle(x, y, etq.Ancho, 95);
+            Rectangle rect_superior_2 = new Rectangle(x, rect_superior.Y + rect_superior.Height, etq.Ancho, 37);
+            Rectangle rect_lateral_izquierdo = new Rectangle(x, rect_superior_2.Y + rect_superior_2.Height, 372, 176);
+            Rectangle rect_lateral_derecho_1 = new Rectangle(rect_lateral_izquierdo.X + rect_lateral_izquierdo.Width, rect_superior_2.Y + rect_superior_2.Height, 379 , 67);
+            Rectangle rect_lateral_derecho_2 = new Rectangle(rect_lateral_izquierdo.X + rect_lateral_izquierdo.Width, rect_lateral_derecho_1.Y + rect_lateral_derecho_1.Height, 379, 55);
+            Rectangle rect_lateral_derecho_3 = new Rectangle(rect_lateral_izquierdo.X + rect_lateral_izquierdo.Width, rect_lateral_derecho_2.Y + rect_lateral_derecho_2.Height, 379, 54);
 
             gfx.DrawRectangle(pluma, rectangulo_contorno);
-            /*gfx.DrawRectangle(pluma, rect_superior);
+            gfx.DrawRectangle(pluma, rect_superior);
             gfx.DrawRectangle(pluma, rect_superior_2);
             gfx.DrawRectangle(pluma, rect_lateral_izquierdo);
-            gfx.DrawRectangle(pluma, rect_central);
-            gfx.DrawRectangle(pluma, rect_lateral_derecho_sup);
-            gfx.DrawRectangle(pluma, rect_lateral_derecho_inf);
-            gfx.DrawRectangle(pluma, rect_inferior);
+            gfx.DrawRectangle(pluma, rect_lateral_derecho_1);
+            gfx.DrawRectangle(pluma, rect_lateral_derecho_2);
+            gfx.DrawRectangle(pluma, rect_lateral_derecho_3);
             //TERMINAN RECTÁNGULOS
-
+            /*
             //LOGO
             //TERMINA LOGO
 

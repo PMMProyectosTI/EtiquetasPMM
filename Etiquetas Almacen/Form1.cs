@@ -27,6 +27,7 @@ namespace Etiquetas_Almacen
             Etiqueta_Tipo_2_2 etq_2_2; //La dos y la 4 son identicas por lo que no se creo la variación 4
             Etiqueta_Tipo_2_3 etq_2_3;
 
+            Etiqueta_Tipo_3_1 etq_3_1;
 
             Etiqueta_Tipo_5_1 etq_5_1;
 
@@ -74,6 +75,12 @@ namespace Etiquetas_Almacen
                     }
                     break;
                 case 3:
+                    switch (etq.VariacionEtiqueta)
+                    {
+                        case 1:
+                            e = etq_3_1.dibujarEtiqueta(e, etq_3_1);
+                            break;
+                    }
                     break;
                 case 4:
                     break;
@@ -156,6 +163,14 @@ namespace Etiquetas_Almacen
                     }
                     break;
                 case 3:
+                    switch (etq.VariacionEtiqueta)
+                    {
+                        case 1:
+                            tipo_etiqueta_en_uso = 3;
+                            variacion_en_uso = 1;
+                            etq_3_1 = new Etiqueta_Tipo_3_1(etq.ClaveProducto);
+                            break;
+                    }
                     break;
                 case 4:
                     break;
@@ -222,6 +237,7 @@ namespace Etiquetas_Almacen
                     printDoc.PrinterSettings.DefaultPageSettings.PaperSize.RawKind = 1;
                     break;
                 case 3:
+                    printDoc.PrinterSettings.DefaultPageSettings.PaperSize.RawKind = 1;
                     break;
                 case 4:
                     break;
