@@ -24,6 +24,7 @@ namespace Etiquetas_Almacen
             Etiqueta_Tipo_1_3 etq_1_3; //etiqueta tipo 1 - variacion 3
 
             Etiqueta_Tipo_2 etq_2;
+            Etiqueta_Tipo_2_2 etq_2_2;
             PrintDocument printDoc = new PrintDocument();
             PrintPreviewDialog previewdlg = new PrintPreviewDialog();
         #endregion
@@ -58,6 +59,9 @@ namespace Etiquetas_Almacen
                     {
                         case 1:
                             e = etq_2.dibujarEtiqueta(e, etq_2);
+                            break;
+                        case 2:
+                            e = etq_2_2.dibujarEtiqueta(e, etq_2_2);
                             break;
                     }
                     break;
@@ -119,6 +123,11 @@ namespace Etiquetas_Almacen
                             tipo_etiqueta_en_uso = 2;
                             variacion_en_uso = 1;
                             etq_2 = new Etiqueta_Tipo_2(etq.ClaveProducto);
+                            break;
+                        case 2:
+                            tipo_etiqueta_en_uso = 2;
+                            variacion_en_uso = 2;
+                            etq_2_2 = new Etiqueta_Tipo_2_2(etq.ClaveProducto);
                             break;
                     }
                     break;
