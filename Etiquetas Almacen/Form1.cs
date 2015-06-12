@@ -29,6 +29,7 @@ namespace Etiquetas_Almacen
 
 
             Etiqueta_Tipo_5_1 etq_5_1;
+
             PrintDocument printDoc = new PrintDocument();
             PrintPreviewDialog previewdlg = new PrintPreviewDialog();
         #endregion
@@ -69,6 +70,18 @@ namespace Etiquetas_Almacen
                             break;
                         case 3:
                             e = etq_2_3.dibujarEtiqueta(e, etq_2_3);
+                            break;
+                    }
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    switch (etq.VariacionEtiqueta)
+                    {
+                        case 1:
+                            e = etq_5_1.dibujarEtiqueta(e, etq_5_1);
                             break;
                     }
                     break;
@@ -147,6 +160,14 @@ namespace Etiquetas_Almacen
                 case 4:
                     break;
                 case 5:
+                    switch (etq.VariacionEtiqueta)
+                    {
+                        case 1:
+                            tipo_etiqueta_en_uso = 5;
+                            variacion_en_uso = 1;
+                            etq_5_1 = new Etiqueta_Tipo_5_1(etq.ClaveProducto);
+                            break;
+                    }
                     break;
                 case 6:
                     break;
@@ -205,6 +226,7 @@ namespace Etiquetas_Almacen
                 case 4:
                     break;
                 case 5:
+                    printDoc.PrinterSettings.DefaultPageSettings.PaperSize.RawKind = 1;
                     break;
             }
             if (previewdlg.ShowDialog() == DialogResult.OK)
