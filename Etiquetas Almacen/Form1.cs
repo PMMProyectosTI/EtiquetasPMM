@@ -27,6 +27,8 @@ namespace Etiquetas_Almacen
             Etiqueta_Tipo_2_2 etq_2_2; //La dos y la 4 son identicas por lo que no se creo la variación 4
             Etiqueta_Tipo_2_3 etq_2_3;
 
+
+            Etiqueta_Tipo_5_1 etq_5_1;
             PrintDocument printDoc = new PrintDocument();
             PrintPreviewDialog previewdlg = new PrintPreviewDialog();
         #endregion
@@ -75,7 +77,6 @@ namespace Etiquetas_Almacen
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
