@@ -31,6 +31,10 @@ namespace Etiquetas_Almacen
 
             Etiqueta_Tipo_5_1 etq_5_1;
 
+            Etiqueta_Tipo_6_1 etq_6_1;
+
+            Etiqueta_Tipo_8_1 etq_8_1;
+
             PrintDocument printDoc = new PrintDocument();
             PrintPreviewDialog previewdlg = new PrintPreviewDialog();
         #endregion
@@ -89,6 +93,22 @@ namespace Etiquetas_Almacen
                     {
                         case 1:
                             e = etq_5_1.dibujarEtiqueta(e, etq_5_1);
+                            break;
+                    }
+                    break;
+                case 6:
+                    switch (etq.VariacionEtiqueta)
+                    {
+                        case 1:
+                            e = etq_6_1.dibujarEtiqueta(e, etq_6_1);
+                            break;
+                    }
+                    break;
+                case 8:
+                    switch (etq.VariacionEtiqueta)
+                    {
+                        case 1:
+                            e = etq_8_1.dibujarEtiqueta(e, etq_8_1);
                             break;
                     }
                     break;
@@ -185,10 +205,26 @@ namespace Etiquetas_Almacen
                     }
                     break;
                 case 6:
+                    switch (etq.VariacionEtiqueta)
+                    {
+                        case 1:
+                            tipo_etiqueta_en_uso = 6;
+                            variacion_en_uso = 1;
+                            etq_6_1 = new Etiqueta_Tipo_6_1(etq.ClaveProducto);
+                            break;
+                    }
                     break;
                 case 7:
                     break;
                 case 8:
+                    switch (etq.VariacionEtiqueta)
+                    {
+                        case 1:
+                            tipo_etiqueta_en_uso = 8;
+                            variacion_en_uso = 1;
+                            etq_8_1 = new Etiqueta_Tipo_8_1(etq.ClaveProducto);
+                            break;
+                    }
                     break;
                 case 9:
                     break;
@@ -228,23 +264,8 @@ namespace Etiquetas_Almacen
             previewdlg.Size = new System.Drawing.Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
             previewdlg.PrintPreviewControl.Zoom = 2;
             //TAMAÑO
-            switch (etq.TipoEtiqueta)
-            { 
-                case 1:
                     printDoc.PrinterSettings.DefaultPageSettings.PaperSize.RawKind = 1;
-                    break;
-                case 2:
-                    printDoc.PrinterSettings.DefaultPageSettings.PaperSize.RawKind = 1;
-                    break;
-                case 3:
-                    printDoc.PrinterSettings.DefaultPageSettings.PaperSize.RawKind = 1;
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    printDoc.PrinterSettings.DefaultPageSettings.PaperSize.RawKind = 1;
-                    break;
-            }
+
             if (previewdlg.ShowDialog() == DialogResult.OK)
             {
                 printDoc.Print();

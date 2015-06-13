@@ -30,7 +30,7 @@ namespace Etiquetas_Almacen
         public Etiqueta_Tipo_5_1(string cp) : base(cp)
         {
             this.ClaveProducto = cp;
-            this.Largo = 398;
+            this.Largo = 399;
             this.Ancho = 403; 
             conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0; Data" + @" Source=" + path.LocalPath + "; Extended Properties='Excel 12.0 Macro;HDR=NO;'";
         }
@@ -70,25 +70,27 @@ namespace Etiquetas_Almacen
             int x = 25, y = 20;
 
             //Fuente de letra
-            Font letraCliente = new Font("Arial", 22);
+            Font letraCliente = new Font("Arial", 18);
             Font letraGrande = new Font("Arial", 11, FontStyle.Bold);
             Font letraMuyGrande = new Font("Arial", 20, FontStyle.Bold);
-            Font letraCampos = new Font("Arial", 7, FontStyle.Bold);      
+            Font letraCampos = new Font("Arial", 8, FontStyle.Bold);
+            Font letraCarton = new Font("Arial", 12, FontStyle.Bold);
+            Font letraWeights = new Font("Arial", 10, FontStyle.Bold);
 
             Graphics gfx = e.Graphics;
             SolidBrush Brush = new SolidBrush(System.Drawing.Color.Black);
-            Pen pluma = new Pen(System.Drawing.Color.Black, 4);
+            Pen pluma = new Pen(System.Drawing.Color.Black, 3);
      
             
             //Rectángulos 
             Rectangle rectangulo_contorno = new Rectangle(x, y, etq.Ancho, etq.Largo);
             Rectangle rect_superior = new Rectangle(x, y, etq.Ancho, 68);
             Rectangle rect_superior_2 = new Rectangle(x, rect_superior.Y + 68, etq.Ancho, 64);
-            Rectangle rect_lateral_izquierdo = new Rectangle(x, rect_superior_2.Y + 64, 94, 231);
-            Rectangle rect_central = new Rectangle(rect_lateral_izquierdo.X + 94, rect_superior_2.Y + 64, 155, 231);
-            Rectangle rect_lateral_derecho_sup = new Rectangle(rect_central.X + 155, rect_superior_2.Y + 64, 154, 108);
-            Rectangle rect_lateral_derecho_inf = new Rectangle(rect_central.X + 155, rect_lateral_derecho_sup.Y + 108, 154, 123);
-            Rectangle rect_inferior = new Rectangle(x, rect_lateral_izquierdo.Y + 231, etq.Ancho, 35);
+            Rectangle rect_lateral_izquierdo = new Rectangle(x, rect_superior_2.Y + 64, 95, 231);
+            Rectangle rect_central = new Rectangle(rect_lateral_izquierdo.X + 95, rect_superior_2.Y + 64, 155, 231);
+            Rectangle rect_lateral_derecho_sup = new Rectangle(rect_central.X + 155, rect_superior_2.Y + 64, 153, 108);
+            Rectangle rect_lateral_derecho_inf = new Rectangle(rect_central.X + 155, rect_lateral_derecho_sup.Y + 108, 153, 123);
+            Rectangle rect_inferior = new Rectangle(x, rect_lateral_izquierdo.Y + 231, etq.Ancho, 36);
 
             gfx.DrawRectangle(pluma, rectangulo_contorno);
             gfx.DrawRectangle(pluma, rect_superior);
@@ -107,60 +109,60 @@ namespace Etiquetas_Almacen
             etq.Cliente = "Braun Oral-B Ireland Ltd.";
             //Cliente
             Size textSize = TextRenderer.MeasureText(etq.Cliente, letraCliente);
-            x = (int)getCenterXcoordinate(rect_superior.X + etq.Ancho, textSize.Width, rect_superior.X);
+            x = (int)getCenterXcoordinate(rect_superior.X + etq.Ancho, textSize.Width, rect_superior.X) + 48;
             gfx.DrawString(etq.Cliente, letraCliente, Brush, new Point(x, rect_superior.Y + 18));
             
 
             //Campos en Recuadro lateral izquierdo
-            x= rect_lateral_izquierdo.X + 3;
+            x= rect_lateral_izquierdo.X + 1/2;
             y= rect_lateral_izquierdo.Y + 3;
 
             //El interlineado varía mucho de campo a campo porque se está intentando imitar por completo una etiqueta
             gfx.DrawString("MATERIAL:", letraGrande, Brush, new Point(x, y));
-            y += 20;
+            y += 21;
             gfx.DrawString("COLOR:", letraCampos, Brush, new Point(x, y));
-            y += 20;
+            y += 21;
             gfx.DrawString("CALIPER:", letraCampos, Brush, new Point(x, y));
-            y += 20;
+            y += 21;
             gfx.DrawString("CUT LENGTH:", letraCampos, Brush, new Point(x, y));
-            y += 20;
+            y += 21;
             gfx.DrawString("P. O. No.:", letraCampos, Brush, new Point(x, y));
-            y += 20;
+            y += 21;
             gfx.DrawString("DISP. LOT:", letraGrande, Brush, new Point(x, y));
-            y += 20; 
+            y += 25; 
             gfx.DrawString("PROD. LOT:", letraCampos, Brush, new Point(x, y));
-            y += 20;
+            y += 21;
             gfx.DrawString("DATE:", letraCampos, Brush, new Point(x, y));
-            y += 20;
+            y += 21;
             gfx.DrawString("NET WEIGHT:", letraCampos, Brush, new Point(x, y));
-            y += 20;
+            y += 21;
             gfx.DrawString("GROSS WEIGHT:", letraCampos, Brush, new Point(x, y));
-            y += 20;
+            y += 21;
             gfx.DrawString("TARE:", letraCampos, Brush, new Point(x, y));
             //y += 35;
             //gfx.DrawString("", letraCampos, Brush, new Point(x, y));
             //gfx.DrawImage();
 
             //Campos en el Recuadro Inferior
-            x = (int)getCenterXcoordinate(rect_inferior.X + etq.Ancho, textSize.Width, rect_inferior.X) + 92;
-            gfx.DrawString("CARTON:", letraCampos, Brush, new Point(x, (etq.Largo - rect_inferior.Y)*(1/2)+566));
+            x = rect_inferior.X + 75;
+            y = rect_inferior.Y + 8; 
+            gfx.DrawString("CARTON:", letraCarton, Brush, new Point(x, y));
 
             //Campos en el Recuadro Lateral Derecho Superior
             int acarreox = rect_lateral_derecho_sup.Width / 2;
-            x = rect_lateral_derecho_sup.X + acarreox - 70;
-            y = rect_lateral_derecho_sup.Y + 10; 
-            gfx.DrawString("GROSS WEIGHT:", letraCampos, Brush, new Point(x,y));
+            x = rect_lateral_derecho_sup.X + acarreox - 63;
+            y = rect_lateral_derecho_sup.Y + 3; 
+            gfx.DrawString("GROSS WEIGHT:", letraWeights, Brush, new Point(x,y));
 
             //Campos en el Recuadro Lateral Derecho Inferior
-            x = rect_lateral_derecho_inf.X + acarreox - 57;
-            //x = rect_lateral_derecho_inf.X + 50;
-            y = rect_lateral_derecho_inf.Y + 40;
-            gfx.DrawString("NET WEIGHT:", letraCampos, Brush, new Point(x, y));
+            x = rect_lateral_derecho_inf.X + acarreox - 50;
+            y = rect_lateral_derecho_inf.Y + 3;
+            gfx.DrawString("NET WEIGHT:", letraWeights, Brush, new Point(x, y));
 
             //Campos en el Segundo Recuadro Superior
-            textSize = TextRenderer.MeasureText("LOT:", letraGrande);
-            x = (int)getCenterXcoordinate(rect_superior_2.X + etq.Ancho, textSize.Width, rect_superior_2.X) + 10;
-            gfx.DrawString("ITEM:", letraMuyGrande, Brush, new Point(x, rect_superior_2.Y + 27));
+            x = rect_superior_2.X + 8;
+            y = rect_superior_2.Y + 16;
+            gfx.DrawString("ITEM:", letraMuyGrande, Brush, new Point(x, y));
 
             //Campos en el Primer Recuadro
             //Image imageFile = Image.FromFile("PNG.jpg");
@@ -168,7 +170,6 @@ namespace Etiquetas_Almacen
             //gfx.DrawImage(Image imageFile, Rectangle rect_Superior, 25, 25, 100, 100);
             //e.Graphics.DrawImage(imageFile, new Point(22,27));
            
-            
 
             return e;
         }
