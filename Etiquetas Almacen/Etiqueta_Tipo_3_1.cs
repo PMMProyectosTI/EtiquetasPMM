@@ -16,17 +16,28 @@ namespace Etiquetas_Almacen
         protected string hoja = "Hoja de Especificaciones grales";
         protected OleDbConnection conn = new OleDbConnection();
 
-        protected int xi = 40;//int xi = 35;
+        /*protected int xi = 40;//int xi = 35;
         protected int yi = 35;//int yi = 35;
         protected int widthi = 120;//int widthi = 125;
-        protected int heighti = 34;//int heighti = 40;
+        protected int heighti = 34;//int heighti = 40;*/
 
+        public Image LogoPMM
+        { get; set; }
+
+        public Image ISO9001
+        { get; set; }
+
+        public Image ISO14001
+        { get; set; }
         public Etiqueta_Tipo_3_1(string cp) : base(cp)
         {
             this.ClaveProducto = cp;
             this.Largo = 308;
             this.Ancho = 751;
             conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0; Data" + @" Source=" + path.LocalPath + "; Extended Properties='Excel 12.0 Macro;HDR=NO;'";
+            this.LogoPMM = Image.FromFile(@"C:/GitHub/logos/PMM_Logo.png");
+            this.ISO14001 = Image.FromFile(@"C:/GitHub/logos/ISO14001_BN.jpg");
+            this.ISO9001 = Image.FromFile(@"C:/GitHub/logos/ISO9001_BN.jpg");
         }
 
         public bool obtenerDatos(string cp)
@@ -65,8 +76,10 @@ namespace Etiquetas_Almacen
 
             //Fuente de letra
             Font letraCliente = new Font("Arial", 22);
-            Font letraGrande = new Font("Arial", 16, FontStyle.Bold);
-            Font letraCampos = new Font("Arial", 12, FontStyle.Bold);
+            Font letraGrande = new Font("Arial", 19, FontStyle.Bold);
+            Font letraCampos = new Font("Arial", 15, FontStyle.Bold);
+            Font letraCampoGrande = new Font("Arial", 16, FontStyle.Bold); //usado para texto "DISPATCH LOT:"
+            Font letraCampoChico = new Font("Arial", 10, FontStyle.Bold); //usado para texto "PRODUCTION LOT:"
 
             Graphics gfx = e.Graphics;
             SolidBrush Brush = new SolidBrush(System.Drawing.Color.Black);
@@ -88,78 +101,84 @@ namespace Etiquetas_Almacen
             gfx.DrawRectangle(pluma, rect_lateral_derecho_1);
             gfx.DrawRectangle(pluma, rect_lateral_derecho_2);
             gfx.DrawRectangle(pluma, rect_lateral_derecho_3);
-            //TERMINAN RECTÁNGULOS
-            /*
-            //LOGO
-            //TERMINA LOGO
+            
 
+            x = rect_superior_2.X + 4;
+            y = rect_superior_2.Y + 2;
 
-            etq.Cliente = "Braun Kronberg";
-            //Cliente
-            Size textSize = TextRenderer.MeasureText(etq.Cliente, letraCliente);
-            x = (int)getCenterXcoordinate(rect_superior.X + etq.Ancho, textSize.Width, rect_superior.X);
-            gfx.DrawString(etq.Cliente, letraCliente, Brush, new Point(x, rect_superior.Y + 18));
+            gfx.DrawString("ITEM:", letraGrande, Brush, new Point(x, y));
+            Size textSize = TextRenderer.MeasureText(etq.ClaveProducto, letraGrande);
+            x = (int)getCenterXcoordinate(rect_superior_2.X + etq.Ancho, textSize.Width, rect_superior_2.X);
+            gfx.DrawString(etq.ClaveProducto, letraGrande, Brush, new Point(x , y));
+            
 
-
-            //Campos en Recuadro lateral izquierdo
-            x = rect_lateral_izquierdo.X + 9;
-            y = rect_lateral_izquierdo.Y + 9;
-
-            //El interlineado varía mucho de campo a campo porque se está intentando imitar por completo una etiqueta
-            gfx.DrawString("ITEM No.:", letraGrande, Brush, new Point(x, y));
-            y += 45;
+            //texto en recuadro lateral izquierdo (material, color, caliper, dispatch lot, production lot)
+            x = rect_lateral_izquierdo.X + 4;
+            y = rect_lateral_izquierdo.Y + 4;
             gfx.DrawString("MATERIAL:", letraCampos, Brush, new Point(x, y));
-            y += 39;
-            gfx.DrawString("COLOR:", letraCampos, Brush, new Point(x, y));
-            y += 42;
-            gfx.DrawString("CALIPER:", letraCampos, Brush, new Point(x, y));
-            y += 42;
-            gfx.DrawString("CUT LENGTH:", letraCampos, Brush, new Point(x, y));
             y += 36;
-            gfx.DrawString("P. O. No.:", letraCampos, Brush, new Point(x, y));
-            y += 30;
-            gfx.DrawString("PRODUCTION REF:", letraCampos, Brush, new Point(x, y));
-            y += 27;
-            gfx.DrawString("DISPATCH DATE:", letraCampos, Brush, new Point(x, y));
-            y += 27;
-            gfx.DrawString("GROSS WEIGHT:", letraCampos, Brush, new Point(x, y));
-            y += 29;
-            gfx.DrawString("TARE:", letraCampos, Brush, new Point(x, y));
-            y += 28;
-            gfx.DrawString("NET WEIGHT:", letraCampos, Brush, new Point(x, y));
-            //y += 35;
-            //gfx.DrawString("", letraCampos, Brush, new Point(x, y));
-            //gfx.DrawImage();
+            gfx.DrawString("COLOR:", letraCampos, Brush, new Point(x, y));
+            y += 36;
+            gfx.DrawString("CALIPER:", letraCampos, Brush, new Point(x, y));
+            y += 36;
+            gfx.DrawString("DISPATCH LOT:", letraCampoGrande, Brush, new Point(x, y));
+            y += 36;
+            gfx.DrawString("PRODUCTION LOT:", letraCampoChico, Brush, new Point(x, y));
+            y += 38;
 
-            //Campos en el Recuadro Inferior
-            x = (int)getCenterXcoordinate(rect_inferior.X + etq.Ancho, textSize.Width, rect_inferior.X) + 92;
-            gfx.DrawString("CARTON:", letraGrande, Brush, new Point(x, (etq.Largo - rect_inferior.Y) * (1 / 2) + 564));
+            x = rect_lateral_izquierdo.X + 193;
+            y = rect_lateral_izquierdo.Y + 4;
+            //estos valores son de prueba, deberán ser reemplazados por etq.Propiedad
+            gfx.DrawString("NYLON 6.12", letraCampos, Brush, new Point(x, y));
+            y += 36;
+            gfx.DrawString("INDICATOR", letraCampos, Brush, new Point(x, y));
+            y += 36;
+            gfx.DrawString("0.007 in", letraCampos, Brush, new Point(x, y));
+            y += 36;
+            gfx.DrawString("12K131", letraCampoGrande, Brush, new Point(x, y));
+            y += 37;
+            gfx.DrawString("4N6122JJ01", letraCampoChico, Brush, new Point(x, y));
+            ////////////////////////////////////////////////////////////////////////////////
 
-            //Campos en el Recuadro Lateral Derecho Superior
-            int acarreox = rect_lateral_derecho_sup.Width / 2;
-            x = rect_lateral_derecho_sup.X + acarreox - 70;
-            y = rect_lateral_derecho_sup.Y + 13;
-            gfx.DrawString("GROSS WEIGHT:", letraCampos, Brush, new Point(x, y));
-
-            //Campos en el Recuadro Lateral Derecho Inferior
-            x = rect_lateral_derecho_inf.X + acarreox - 57;
-            //x = rect_lateral_derecho_inf.X + 50;
-            y = rect_lateral_derecho_inf.Y + 29;
+            x = rect_lateral_derecho_1.X + 10;
+            textSize = TextRenderer.MeasureText("NET WEIGHT:",letraCampos);
+            y = (int)getCenterYcoordinate(rect_lateral_derecho_1.Y + rect_lateral_derecho_1.Height, textSize.Height, rect_lateral_derecho_1.Y);
             gfx.DrawString("NET WEIGHT:", letraCampos, Brush, new Point(x, y));
 
-            //Campos en el Segundo Recuadro Superior
-            textSize = TextRenderer.MeasureText("LOT:", letraGrande);
-            x = (int)getCenterXcoordinate(rect_superior_2.X + etq.Ancho, textSize.Width, rect_superior_2.X) + 129;
-            gfx.DrawString("LOT:", letraGrande, Brush, new Point(x, rect_superior_2.Y + 27));
+            x = rect_lateral_derecho_2.X + 10;
+            textSize = TextRenderer.MeasureText("GROSS WEIGHT:", letraCampos);
+            y = (int)getCenterYcoordinate(rect_lateral_derecho_2.Y + rect_lateral_derecho_2.Height, textSize.Height, rect_lateral_derecho_2.Y);
+            gfx.DrawString("GROSS WEIGHT:", letraCampos, Brush, new Point(x, y));
 
-            //Campos en el Primer Recuadro
-            //Image imageFile = Image.FromFile("PNG.jpg");
-            // gfx.DrawImage(newImage, xi, yi, widthi, heighti);
-            //gfx.DrawImage(Image imageFile, Rectangle rect_Superior, 25, 25, 100, 100);
-            //e.Graphics.DrawImage(imageFile, new Point(22,27));
+            x = rect_lateral_derecho_3.X + 45;
+            textSize = TextRenderer.MeasureText("CARTON:", letraCampoGrande);
+            y = (int)getCenterYcoordinate(rect_lateral_derecho_3.Y + rect_lateral_derecho_3.Height, textSize.Height, rect_lateral_derecho_3.Y);
+            gfx.DrawString("CARTON:", letraCampoGrande, Brush, new Point(x, y));
 
+            
 
-            */
+            /////////valroes de prueba
+            textSize = TextRenderer.MeasureText("8.16 Kg.", letraCampos);
+            y = (int)getCenterYcoordinate(rect_lateral_derecho_1.Y + rect_lateral_derecho_1.Height, textSize.Height, rect_lateral_derecho_1.Y);
+            x = (int)getRightXcoordinate(rect_lateral_derecho_1.X + rect_lateral_derecho_1.Width, textSize.Width, rect_lateral_derecho_1.X) - 10;
+            gfx.DrawString("8.16 Kg.", letraCampos, Brush, new Point(x, y));
+
+            textSize = TextRenderer.MeasureText("9.22 Kg.", letraCampos);
+            y = (int)getCenterYcoordinate(rect_lateral_derecho_2.Y + rect_lateral_derecho_2.Height, textSize.Height, rect_lateral_derecho_2.Y);
+            x = (int)getRightXcoordinate(rect_lateral_derecho_2.X + rect_lateral_derecho_2.Width, textSize.Width, rect_lateral_derecho_2.X) - 10;
+            gfx.DrawString("9.22 Kg.", letraCampos, Brush, new Point(x, y));
+
+            textSize = TextRenderer.MeasureText("1 : 36", letraCampoGrande);
+            y = (int)getCenterYcoordinate(rect_lateral_derecho_3.Y + rect_lateral_derecho_3.Height, textSize.Height, rect_lateral_derecho_3.Y);
+            x = rect_lateral_derecho_3.X + 200;
+            gfx.DrawString("1 : 36", letraCampoGrande, Brush, new Point(x, y));
+
+            
+            //Imágenes
+            gfx.DrawImage(etq.LogoPMM, rectangulo_contorno.X + 5, rectangulo_contorno.Y + 2, 356, 77);
+            gfx.DrawImage(etq.ISO9001, 580, rectangulo_contorno.Y + 4, rect_superior.Height - 8, rect_superior.Height - 8);
+            gfx.DrawImage(etq.ISO14001, 686, rectangulo_contorno.Y + 4, rect_superior.Height - 8, rect_superior.Height - 8);
+            
             return e;
         }
 
@@ -169,7 +188,22 @@ namespace Etiquetas_Almacen
             x = (0.5 * (etiquetaX + rectX)) - (0.5 * textoX);
             return x;
         }
-
+        protected double getRightXcoordinate(int etiquetaX, int elementX, int rectX)//anchura en pixeles del texto y de la etiqueta
+        {
+            double x = 0;
+            x = rectX + etiquetaX - elementX - 7;
+            while (x > etiquetaX - elementX)
+            {
+                x--;
+            }
+            return x;//se le quitan 10 pixeles para que no esté pegado a la derecha
+        }
+        protected double getCenterYcoordinate(int etiquetaY, int textoY, int rectY)//anchura en pixeles del texto y de la etiqueta
+        {
+            double y = 0;
+            y = (0.5 * (etiquetaY + rectY)) - (0.5 * textoY);
+            return y;
+        }
 
 
     }
