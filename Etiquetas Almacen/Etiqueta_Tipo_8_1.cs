@@ -27,12 +27,16 @@ namespace Etiquetas_Almacen
         protected int widthi = 120;//int widthi = 125;
         protected int heighti = 34;//int heighti = 40;
 
+        public Image LogoPMM
+        { get; set; }
+
         public Etiqueta_Tipo_8_1(string cp) : base(cp)
         {
             this.ClaveProducto = cp;
-            this.Largo = 657;
-            this.Ancho = 401; 
+            this.Largo = 587;
+            this.Ancho = 403; 
             conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0; Data" + @" Source=" + path.LocalPath + "; Extended Properties='Excel 12.0 Macro;HDR=NO;'";
+            this.LogoPMM = Image.FromFile(@"C:/GitHub/EtiquetasPMM/logos/PMM_Logo.png");
         }
 
         public bool obtenerDatos(string cp)
@@ -70,12 +74,9 @@ namespace Etiquetas_Almacen
             int x = 25, y = 20;
 
             //Fuente de letra
-            Font letraCliente = new Font("Arial", 18);
-            Font letraGrande = new Font("Arial", 11, FontStyle.Bold);
-            Font letraMuyGrande = new Font("Arial", 20, FontStyle.Bold);
+            Font letraInfo = new Font("Arial", 6);
             Font letraCampos = new Font("Arial", 8, FontStyle.Bold);
-            Font letraCarton = new Font("Arial", 12, FontStyle.Bold);
-            Font letraWeights = new Font("Arial", 10, FontStyle.Bold);
+            Font letraIndices = new Font("Arial", 14, FontStyle.Bold);
 
             Graphics gfx = e.Graphics;
             SolidBrush Brush = new SolidBrush(System.Drawing.Color.Black);
@@ -84,11 +85,11 @@ namespace Etiquetas_Almacen
             
             //Rectángulos 
             Rectangle rectangulo_contorno = new Rectangle(x, y, etq.Ancho, etq.Largo);
-            Rectangle rect_superior_1 = new Rectangle(x, y, 197, 121);
-            Rectangle rect_superior_2 = new Rectangle(x + 197, y, 189, 121);
-            Rectangle rectangulo_central_1 = new Rectangle(x, y + 121, etq.Ancho, 132);
-            Rectangle rectangulo_central_2 = new Rectangle(x, rectangulo_central_1.Y + 132, etq.Ancho, 159);
-            Rectangle rectangulo_central_3 = new Rectangle(x, rectangulo_central_2.Y + 159, etq.Ancho, 147);
+            Rectangle rect_superior_1 = new Rectangle(x, y, 205, 126);
+            Rectangle rect_superior_2 = new Rectangle(x + 205, y, 198, 126);
+            Rectangle rectangulo_central_1 = new Rectangle(x, y + 126, etq.Ancho, 140);
+            Rectangle rectangulo_central_2 = new Rectangle(x, rectangulo_central_1.Y + 140, etq.Ancho, 165);
+            Rectangle rectangulo_central_3 = new Rectangle(x, rectangulo_central_2.Y + 165, etq.Ancho, 156);
 
             gfx.DrawRectangle(pluma, rectangulo_contorno);
             gfx.DrawRectangle(pluma, rect_superior_1);
@@ -96,34 +97,31 @@ namespace Etiquetas_Almacen
             gfx.DrawRectangle(pluma, rectangulo_central_1);
             gfx.DrawRectangle(pluma, rectangulo_central_2);
             gfx.DrawRectangle(pluma, rectangulo_central_3);
-           
 
-            //LOGO
-            //TERMINA LOGO
-
-            
-            etq.Cliente = "Braun Oral-B Ireland Ltd.";
-            //Cliente
-            Size textSize = TextRenderer.MeasureText(etq.Cliente, letraCliente);
-            //x = (int)getCenterXcoordinate(rect_superior.X + etq.Ancho, textSize.Width, rect_superior.X) + 48;
-            //gfx.DrawString(etq.Cliente, letraCliente, Brush, new Point(x, rect_superior.Y + 18));
-            
-
-            //Campos en Recuadro lateral izquierdo
-            //x= rect_lateral_izquierdo.X + 1/2;
-            //y= rect_lateral_izquierdo.Y + 3;
+            gfx.DrawImage(etq.LogoPMM, rectangulo_contorno.X + 35, rectangulo_contorno.Y + 3, 168, 40);
 
             //El interlineado varía mucho de campo a campo porque se está intentando imitar por completo una etiqueta
-            gfx.DrawString("MATERIAL:", letraGrande, Brush, new Point(x, y));
-            y += 21;
-      
+            gfx.DrawString("From:", letraCampos, Brush, new Point(x, y+3));
+            gfx.DrawString("To:", letraCampos, Brush, new Point(x+205, y + 3));
 
-            //Campos en el Primer Recuadro
-            //Image imageFile = Image.FromFile("PNG.jpg");
-           // gfx.DrawImage(newImage, xi, yi, widthi, heighti);
-            //gfx.DrawImage(Image imageFile, Rectangle rect_Superior, 25, 25, 100, 100);
-            //e.Graphics.DrawImage(imageFile, new Point(22,27));
-           
+            gfx.DrawString("Proveedora Mexicana de", letraCampos, Brush, new Point (x + 40, y + 45));
+            gfx.DrawString("Monofilamentos S.A de C.V.", letraCampos, Brush, new Point(x + 40, y + 60));
+            gfx.DrawString("Oriente 217 No. 190, Agricola Oriental,", letraInfo, Brush, new Point(x + 2, y + 80));
+            gfx.DrawString("08500, Mexico City, Mexico.", letraInfo, Brush, new Point(x + 2, y + 90));
+            gfx.DrawString("Tel. 00 5255 5763 8663 Fax 00 5255 5558 4483", letraInfo, Brush, new Point(x+ 2, y + 100));
+            gfx.DrawString("pmm@pmm-mex.com", letraInfo, Brush, new Point(x+ 2, y + 110));
+
+            x = rectangulo_central_1.X + 90;
+            y = rectangulo_central_1.Y + 30;
+            gfx.DrawString("PO:", letraIndices, Brush, new Point(x, y));
+
+            x = rectangulo_central_2.X + 90;
+            y = rectangulo_central_2.Y + 30;
+            gfx.DrawString("SKU:", letraIndices, Brush, new Point(x, y));
+
+            x = rectangulo_central_3.X + 90;
+            y = rectangulo_central_3.Y + 30;
+            gfx.DrawString("QTY:", letraIndices, Brush, new Point(x, y));          
 
             return e;
         }
