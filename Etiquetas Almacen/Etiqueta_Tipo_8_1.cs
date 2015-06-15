@@ -120,25 +120,7 @@ namespace Etiquetas_Almacen
             //El interlineado varía mucho de campo a campo porque se está intentando imitar por completo una etiqueta
             gfx.DrawString("MATERIAL:", letraGrande, Brush, new Point(x, y));
             y += 21;
-            gfx.DrawString("COLOR:", letraCampos, Brush, new Point(x, y));
-            y += 21;
-            gfx.DrawString("CALIPER:", letraCampos, Brush, new Point(x, y));
-            y += 21;
-            gfx.DrawString("CUT LENGTH:", letraCampos, Brush, new Point(x, y));
-            y += 21;
-            gfx.DrawString("P. O. No.:", letraCampos, Brush, new Point(x, y));
-            y += 21;
-            gfx.DrawString("DISP. LOT:", letraGrande, Brush, new Point(x, y));
-            y += 25; 
-            gfx.DrawString("PROD. LOT:", letraCampos, Brush, new Point(x, y));
-            y += 21;
-            gfx.DrawString("DATE:", letraCampos, Brush, new Point(x, y));
-            y += 21;
-            gfx.DrawString("NET WEIGHT:", letraCampos, Brush, new Point(x, y));
-            y += 21;
-            gfx.DrawString("GROSS WEIGHT:", letraCampos, Brush, new Point(x, y));
-            y += 21;
-            gfx.DrawString("TARE:", letraCampos, Brush, new Point(x, y));
+      
             //y += 35;
             //gfx.DrawString("", letraCampos, Brush, new Point(x, y));
             //gfx.DrawImage();
