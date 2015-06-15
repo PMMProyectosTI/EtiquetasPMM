@@ -84,23 +84,19 @@ namespace Etiquetas_Almacen
             
             //Rectángulos 
             Rectangle rectangulo_contorno = new Rectangle(x, y, etq.Ancho, etq.Largo);
-            Rectangle rect_superior = new Rectangle(x, y, etq.Ancho, 68);
-            Rectangle rect_superior_2 = new Rectangle(x, rect_superior.Y + 68, etq.Ancho, 64);
-            Rectangle rect_lateral_izquierdo = new Rectangle(x, rect_superior_2.Y + 64, 95, 231);
-            Rectangle rect_central = new Rectangle(rect_lateral_izquierdo.X + 95, rect_superior_2.Y + 64, 155, 231);
-            Rectangle rect_lateral_derecho_sup = new Rectangle(rect_central.X + 155, rect_superior_2.Y + 64, 153, 108);
-            Rectangle rect_lateral_derecho_inf = new Rectangle(rect_central.X + 155, rect_lateral_derecho_sup.Y + 108, 153, 123);
-            Rectangle rect_inferior = new Rectangle(x, rect_lateral_izquierdo.Y + 231, etq.Ancho, 36);
+            Rectangle rect_superior_1 = new Rectangle(x, y, 197, 121);
+            Rectangle rect_superior_2 = new Rectangle(x + 197, y, 189, 121);
+            Rectangle rectangulo_central_1 = new Rectangle(x, y + 121, etq.Ancho, 132);
+            Rectangle rectangulo_central_2 = new Rectangle(x, rectangulo_central_1.Y + 132, etq.Ancho, 159);
+            Rectangle rectangulo_central_3 = new Rectangle(x, rectangulo_central_2.Y + 159, etq.Ancho, 147);
 
             gfx.DrawRectangle(pluma, rectangulo_contorno);
-            gfx.DrawRectangle(pluma, rect_superior);
+            gfx.DrawRectangle(pluma, rect_superior_1);
             gfx.DrawRectangle(pluma, rect_superior_2);
-            gfx.DrawRectangle(pluma, rect_lateral_izquierdo);
-            gfx.DrawRectangle(pluma, rect_central);
-            gfx.DrawRectangle(pluma, rect_lateral_derecho_sup);
-            gfx.DrawRectangle(pluma, rect_lateral_derecho_inf);
-            gfx.DrawRectangle(pluma, rect_inferior);
-            //TERMINAN RECTÁNGULOS
+            gfx.DrawRectangle(pluma, rectangulo_central_1);
+            gfx.DrawRectangle(pluma, rectangulo_central_2);
+            gfx.DrawRectangle(pluma, rectangulo_central_3);
+           
 
             //LOGO
             //TERMINA LOGO
@@ -109,42 +105,18 @@ namespace Etiquetas_Almacen
             etq.Cliente = "Braun Oral-B Ireland Ltd.";
             //Cliente
             Size textSize = TextRenderer.MeasureText(etq.Cliente, letraCliente);
-            x = (int)getCenterXcoordinate(rect_superior.X + etq.Ancho, textSize.Width, rect_superior.X) + 48;
-            gfx.DrawString(etq.Cliente, letraCliente, Brush, new Point(x, rect_superior.Y + 18));
+            //x = (int)getCenterXcoordinate(rect_superior.X + etq.Ancho, textSize.Width, rect_superior.X) + 48;
+            //gfx.DrawString(etq.Cliente, letraCliente, Brush, new Point(x, rect_superior.Y + 18));
             
 
             //Campos en Recuadro lateral izquierdo
-            x= rect_lateral_izquierdo.X + 1/2;
-            y= rect_lateral_izquierdo.Y + 3;
+            //x= rect_lateral_izquierdo.X + 1/2;
+            //y= rect_lateral_izquierdo.Y + 3;
 
             //El interlineado varía mucho de campo a campo porque se está intentando imitar por completo una etiqueta
             gfx.DrawString("MATERIAL:", letraGrande, Brush, new Point(x, y));
             y += 21;
       
-            //y += 35;
-            //gfx.DrawString("", letraCampos, Brush, new Point(x, y));
-            //gfx.DrawImage();
-
-            //Campos en el Recuadro Inferior
-            x = rect_inferior.X + 75;
-            y = rect_inferior.Y + 8; 
-            gfx.DrawString("CARTON:", letraCarton, Brush, new Point(x, y));
-
-            //Campos en el Recuadro Lateral Derecho Superior
-            int acarreox = rect_lateral_derecho_sup.Width / 2;
-            x = rect_lateral_derecho_sup.X + acarreox - 63;
-            y = rect_lateral_derecho_sup.Y + 3; 
-            gfx.DrawString("GROSS WEIGHT:", letraWeights, Brush, new Point(x,y));
-
-            //Campos en el Recuadro Lateral Derecho Inferior
-            x = rect_lateral_derecho_inf.X + acarreox - 50;
-            y = rect_lateral_derecho_inf.Y + 3;
-            gfx.DrawString("NET WEIGHT:", letraWeights, Brush, new Point(x, y));
-
-            //Campos en el Segundo Recuadro Superior
-            x = rect_superior_2.X + 8;
-            y = rect_superior_2.Y + 16;
-            gfx.DrawString("ITEM:", letraMuyGrande, Brush, new Point(x, y));
 
             //Campos en el Primer Recuadro
             //Image imageFile = Image.FromFile("PNG.jpg");
