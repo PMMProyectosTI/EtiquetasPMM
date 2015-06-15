@@ -23,7 +23,7 @@ namespace Etiquetas_Almacen
             this.Largo = 320;
             this.Ancho = 794;
             conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0; Data" + @" Source=" + path.LocalPath + "; Extended Properties='Excel 12.0 Macro;HDR=NO;'";
-            this.LogoPG = Image.FromFile(@"C:/GitHub/EtiquetasPMM/logos/P&G.png");
+            this.LogoPG = Image.FromFile(@"C:/GitHub/EtiquetasPMM/logos/PandG.png");
         }
         public Image LogoPG
         { get; set; }
