@@ -28,16 +28,16 @@ namespace Etiquetas_Almacen
         { get; set; }
 
         public Image ISO14001
-        { get; set; }
+        { get; set; }  
         public Etiqueta_Tipo_3_1(string cp) : base(cp)
         {
             this.ClaveProducto = cp;
             this.Largo = 308;
             this.Ancho = 751;
             conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0; Data" + @" Source=" + path.LocalPath + "; Extended Properties='Excel 12.0 Macro;HDR=NO;'";
-            this.LogoPMM = Image.FromFile(@"C:/GitHub/logos/PMM_Logo.png");
-            this.ISO14001 = Image.FromFile(@"C:/GitHub/logos/ISO14001_BN.jpg");
-            this.ISO9001 = Image.FromFile(@"C:/GitHub/logos/ISO9001_BN.jpg");
+            this.LogoPMM = Image.FromFile(@"C:/GitHub/EtiquetasPMM/logos/PMM_Logo.png");
+            this.ISO14001 = Image.FromFile(@"C:/GitHub/EtiquetasPMM/logos/ISO14001_BN.jpg");
+            this.ISO9001 = Image.FromFile(@"C:/GitHub/EtiquetasPMM/logos/ISO9001_BN.jpg");
         }
 
         public bool obtenerDatos(string cp)
