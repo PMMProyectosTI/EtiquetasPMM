@@ -28,7 +28,7 @@ namespace Etiquetas_Almacen
             Etiqueta_Tipo_2_3 etq_2_3;
 
             Etiqueta_Tipo_3_1 etq_3_1;
-
+            Etiqueta_Tipo_4_1 etq_4_1;
             Etiqueta_Tipo_5_1 etq_5_1;
 
             Etiqueta_Tipo_6_1 etq_6_1;
@@ -87,6 +87,12 @@ namespace Etiquetas_Almacen
                     }
                     break;
                 case 4:
+                    switch (etq.VariacionEtiqueta)
+                    { 
+                        case 1:
+                            e = etq_4_1.dibujarEtiqueta(e, etq_4_1);
+                            break;
+                    }
                     break;
                 case 5:
                     switch (etq.VariacionEtiqueta)
@@ -193,6 +199,14 @@ namespace Etiquetas_Almacen
                     }
                     break;
                 case 4:
+                    switch (etq.VariacionEtiqueta)
+                    {
+                        case 1:
+                            tipo_etiqueta_en_uso = 4;
+                            variacion_en_uso = 1;
+                            etq_4_1 = new Etiqueta_Tipo_4_1(etq.ClaveProducto);
+                            break;
+                    }
                     break;
                 case 5:
                     switch (etq.VariacionEtiqueta)
