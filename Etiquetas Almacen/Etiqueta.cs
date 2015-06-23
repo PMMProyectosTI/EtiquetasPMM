@@ -60,6 +60,15 @@ namespace Etiquetas_Almacen
         public int VariacionEtiqueta
         { get; set; }
 
+        public string Lote
+        { get; set; }
+
+        public double PesoNeto
+        { get; set; }
+
+        public double PesoBruto
+        {get; set;}
+
         public bool obtenerTipo(string cp)
         {
             OleDbCommand get = new OleDbCommand();
