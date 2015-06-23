@@ -34,7 +34,7 @@ namespace Etiquetas_Almacen
             //Rectángulos 
             Rectangle rectangulo_contorno = new Rectangle(x, y, etq.Ancho, etq.Largo);
             Rectangle rect_superior = new Rectangle(x, y, etq.Ancho, 70);
-            Rectangle rect_superior_2 = new Rectangle(x, rect_superior.Y + 70, etq.Ancho, 92);//c
+            Rectangle rect_superior_2 = new Rectangle(x, rect_superior.Y + 70, etq.Ancho, 92);
             Rectangle rect_lateral_izquierdo = new Rectangle(x, rect_superior_2.Y + 92, 175, 379);
             Rectangle rect_central = new Rectangle(rect_lateral_izquierdo.X + 175, rect_superior_2.Y + 92, 373, 379);
             Rectangle rect_lateral_derecho_sup = new Rectangle(rect_central.X + 373, rect_superior_2.Y + 92, 238, 211);

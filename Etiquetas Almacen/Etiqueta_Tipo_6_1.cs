@@ -51,6 +51,7 @@ namespace Etiquetas_Almacen
                     this.Corte = reader["F6"].ToString();
                 }
                 reader.Dispose();
+                conn.Close();
                 return true;
             }
             catch (Exception ex)
