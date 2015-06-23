@@ -28,12 +28,25 @@ namespace Etiquetas_Almacen
             Etiqueta_Tipo_2_3 etq_2_3;
 
             Etiqueta_Tipo_3_1 etq_3_1;
+            
             Etiqueta_Tipo_4_1 etq_4_1;
+            
             Etiqueta_Tipo_5_1 etq_5_1;
 
             Etiqueta_Tipo_6_1 etq_6_1;
 
-            Etiqueta_Tipo_8_1 etq_8_1;
+            Etiqueta_Tipo_8_1 etq_8_1; //Vvariacion identica
+
+            Etiqueta_Tipo_10_1 etq_10_1;
+
+            Etiqueta_Tipo_12_1 etq_12_1;
+
+            Etiqueta_Tipo_14_1 etq_14_1;
+            Etiqueta_Tipo_14_2 etq_14_2;
+
+            Etiqueta_Tipo_16_1 etq_16_1;
+
+            Etiqueta_Tipo_17_1 etq_17_1;
 
             PrintDocument printDoc = new PrintDocument();
             PrintPreviewDialog previewdlg = new PrintPreviewDialog();
@@ -115,6 +128,49 @@ namespace Etiquetas_Almacen
                     {
                         case 1:
                             e = etq_8_1.dibujarEtiqueta(e, etq_8_1);
+                            break;
+                    }
+                    break;
+                case 10:
+                    switch (etq.VariacionEtiqueta)
+                    {
+                        case 1:
+                            e = etq_10_1.dibujarEtiqueta(e, etq_10_1);
+                            break;
+                    }
+                    break;
+                case 12:
+                    switch (etq.VariacionEtiqueta)
+                    {
+                        case 1:
+                            e = etq_12_1.dibujarEtiqueta(e, etq_12_1);
+                            break;
+                    }
+                    break;
+                case 14:
+                    switch (etq.VariacionEtiqueta)
+                    {
+                        case 1:
+                            e = etq_14_1.dibujarEtiqueta(e, etq_14_1);
+                            break;
+                        case 2:
+                            e = etq_14_2.dibujarEtiqueta(e, etq_14_2);
+                            break;
+                    }
+                    break;
+                case 16:
+                    switch (etq.VariacionEtiqueta)
+                    {
+                        case 1:
+                            e = etq_16_1.dibujarEtiqueta(e, etq_16_1);
+                            break;
+                    }
+                    break;
+                case 17:
+                    switch (etq.VariacionEtiqueta)
+                    {
+                        case 1:
+                            e = etq_17_1.dibujarEtiqueta(e, etq_17_1);
                             break;
                     }
                     break;
@@ -243,20 +299,65 @@ namespace Etiquetas_Almacen
                 case 9:
                     break;
                 case 10:
+                    switch (etq.VariacionEtiqueta)
+                    {
+                        case 1:
+                            tipo_etiqueta_en_uso = 10;
+                            variacion_en_uso = 1;
+                            etq_10_1 = new Etiqueta_Tipo_10_1(etq.ClaveProducto);
+                            break;
+                    }
                     break;
                 case 11:
                     break;
                 case 12:
+                    switch (etq.VariacionEtiqueta)
+                    {
+                        case 1:
+                            tipo_etiqueta_en_uso = 12;
+                            variacion_en_uso = 1;
+                            etq_12_1 = new Etiqueta_Tipo_12_1(etq.ClaveProducto);
+                            break;
+                    }
                     break;
                 case 13:
                     break;
                 case 14:
+                    switch (etq.VariacionEtiqueta)
+                    {
+                        case 1:
+                            tipo_etiqueta_en_uso = 14;
+                            variacion_en_uso = 1;
+                            etq_14_1 = new Etiqueta_Tipo_14_1(etq.ClaveProducto);
+                            break;
+                        case 2:
+                            tipo_etiqueta_en_uso = 14;
+                            variacion_en_uso = 2;
+                            etq_14_2 = new Etiqueta_Tipo_14_2(etq.ClaveProducto);
+                            break;
+                    }
                     break;
                 case 15:
                     break;
                 case 16:
+                    switch (etq.VariacionEtiqueta)
+                    {
+                        case 1:
+                            tipo_etiqueta_en_uso = 16;
+                            variacion_en_uso = 1;
+                            etq_16_1 = new Etiqueta_Tipo_16_1(etq.ClaveProducto);
+                            break;
+                    }
                     break;
                 case 17:
+                    switch (etq.VariacionEtiqueta)
+                    {
+                        case 1:
+                            tipo_etiqueta_en_uso = 17;
+                            variacion_en_uso = 1;
+                            etq_17_1 = new Etiqueta_Tipo_17_1(etq.ClaveProducto);
+                            break;
+                    }
                     break;
                 case 18:
                     break;
@@ -288,7 +389,7 @@ namespace Etiquetas_Almacen
 
         private void button2_Click(object sender, EventArgs e)
         {
-            imprimir();
+            imprimir(); 
         }
     }
 }

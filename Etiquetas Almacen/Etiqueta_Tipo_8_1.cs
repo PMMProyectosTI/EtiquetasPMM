@@ -30,6 +30,12 @@ namespace Etiquetas_Almacen
         public Image LogoPMM
         { get; set; }
 
+        public Image LogoCEQUENT
+        { get; set; }
+
+        public Image LogoHARPER
+        { get; set; }
+
         public Etiqueta_Tipo_8_1(string cp) : base(cp)
         {
             this.ClaveProducto = cp;
@@ -37,6 +43,8 @@ namespace Etiquetas_Almacen
             this.Ancho = 403; 
             conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0; Data" + @" Source=" + path.LocalPath + "; Extended Properties='Excel 12.0 Macro;HDR=NO;'";
             this.LogoPMM = Image.FromFile(@"C:/GitHub/EtiquetasPMM/logos/PMM_Logo.png");
+            this.LogoCEQUENT = Image.FromFile(@"C:/GitHub/EtiquetasPMM/logos/Cequent.jpg");
+            this.LogoHARPER = Image.FromFile(@"C:/GitHub/EtiquetasPMM/logos/Harper.png");
         }
 
         public bool obtenerDatos(string cp)
@@ -57,6 +65,7 @@ namespace Etiquetas_Almacen
                     this.Corte = reader["F6"].ToString();
                 }
                 reader.Dispose();
+                conn.Close();
                 return true;
             }
             catch (Exception ex)
@@ -76,7 +85,7 @@ namespace Etiquetas_Almacen
             //Fuente de letra
             Font letraInfo = new Font("Arial", 6);
             Font letraCampos = new Font("Arial", 8, FontStyle.Bold);
-            Font letraIndices = new Font("Arial", 14, FontStyle.Bold);
+            Font letraIndices = new Font("Arial", 13, FontStyle.Bold);
 
             Graphics gfx = e.Graphics;
             SolidBrush Brush = new SolidBrush(System.Drawing.Color.Black);
@@ -98,7 +107,9 @@ namespace Etiquetas_Almacen
             gfx.DrawRectangle(pluma, rectangulo_central_2);
             gfx.DrawRectangle(pluma, rectangulo_central_3);
 
-            gfx.DrawImage(etq.LogoPMM, rectangulo_contorno.X + 35, rectangulo_contorno.Y + 3, 168, 40);
+            gfx.DrawImage(etq.LogoPMM, rect_superior_1.X + 35, rect_superior_1.Y + 3, 168, 40);
+            gfx.DrawImage(etq.LogoCEQUENT, rect_superior_2.X + 35, rect_superior_2.Y + 3, 40, 40);
+            gfx.DrawImage(etq.LogoHARPER, rect_superior_2.X + 85, rect_superior_2.Y + 3, 100, 40);
 
             //El interlineado varía mucho de campo a campo porque se está intentando imitar por completo una etiqueta
             gfx.DrawString("From:", letraCampos, Brush, new Point(x, y+3));
@@ -111,16 +122,16 @@ namespace Etiquetas_Almacen
             gfx.DrawString("Tel. 00 5255 5763 8663 Fax 00 5255 5558 4483", letraInfo, Brush, new Point(x+ 2, y + 100));
             gfx.DrawString("pmm@pmm-mex.com", letraInfo, Brush, new Point(x+ 2, y + 110));
 
-            x = rectangulo_central_1.X + 90;
-            y = rectangulo_central_1.Y + 30;
+            x = rectangulo_central_1.X + 80;
+            y = rectangulo_central_1.Y + 17;
             gfx.DrawString("PO:", letraIndices, Brush, new Point(x, y));
 
-            x = rectangulo_central_2.X + 90;
-            y = rectangulo_central_2.Y + 30;
+            x = rectangulo_central_2.X + 80;
+            y = rectangulo_central_2.Y + 17;
             gfx.DrawString("SKU:", letraIndices, Brush, new Point(x, y));
 
-            x = rectangulo_central_3.X + 90;
-            y = rectangulo_central_3.Y + 30;
+            x = rectangulo_central_3.X + 80;
+            y = rectangulo_central_3.Y + 17;
             gfx.DrawString("QTY:", letraIndices, Brush, new Point(x, y));          
 
             return e;
